@@ -12,3 +12,5 @@
 *.d
 bin/*
 core.*
+*.dSYM
+.vscode
