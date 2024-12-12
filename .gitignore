@@ -1,0 +1,14 @@
+*.o
+*.obj
+*.so
+*.dll
+*.exe
+*.out
+*.a
+*.lib
+*.log
+*.tmp
+*.temp
+*.d
+bin/*
+core.*
