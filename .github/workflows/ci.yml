@@ -1,0 +1,31 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main  # 或者你要使用的其他分支
+
+jobs:
+  build-and-test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up g++
+      run: sudo apt-get update && sudo apt-get install -y g++
+
+    - name: Compile src/rbtree_test
+      run: |
+        g++ -std=c++11 -I. src/rbtree/rbtree_test.cc src/rbtree/rbtree.cc -o rbtree_test
+
+    - name: Run src/rbtree_test
+      run: ./rbtree_test
+
+    - name: Compile template/rbtree_test
+      run: |
+        g++ -std=c++20 -I. template/rbtree/rbtree_test.cc -o template_rbtree_test
+
+    - name: Run template/rbtree_test
+      run: ./template_rbtree_test

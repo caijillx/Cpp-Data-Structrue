@@ -338,3 +338,16 @@ void RBTree::remove_fix(Node* node) {
   }
   node->color = Color::BLACK;
 }
+
+RBTree::~RBTree() {
+  if (root == nullptr) return;
+  std::queue<Node*> q;
+  q.push(root);
+  while (!q.empty()) {
+    Node* node = q.front();
+    q.pop();
+    if (node->lchild != nullptr) q.push(node->lchild);
+    if (node->rchild != nullptr) q.push(node->rchild);
+    delete node;
+  }
+}

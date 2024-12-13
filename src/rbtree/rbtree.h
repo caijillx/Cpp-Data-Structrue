@@ -27,6 +27,8 @@ class RBTree {
   void print_graphvis() const;
   void check() const;
 
+  ~RBTree();
+
  private:
   // 左旋：以node为旋转点 node->rchild为中心点，向左进行旋转
   void left_rotate(Node* node);

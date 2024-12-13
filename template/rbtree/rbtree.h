@@ -1,4 +1,5 @@
 #include <functional>
+#include <queue>
 
 #include "template/define.h"
 
@@ -23,6 +24,8 @@ class RBTree {
   bool insert(T val);
   bool remove(T val);
   void erase(Node* node);
+
+  ~RBTree();
 
  private:
   inline bool compare(Node* a, Node* b) const noexcept {
@@ -278,4 +281,18 @@ void RBTree<T, U>::remove_fix(Node* node) noexcept {
     }
   }
   node->color = Color::BLACK;
+}
+
+template <Comparable T, class U>
+RBTree<T, U>::~RBTree() {
+  if (root == nullptr) return;
+  std::queue<Node*> q;
+  q.push(root);
+  while (!q.empty()) {
+    Node* node = q.front();
+    q.pop();
+    if (node->lchild != nullptr) q.push(node->lchild);
+    if (node->rchild != nullptr) q.push(node->rchild);
+    delete node;
+  }
 }
